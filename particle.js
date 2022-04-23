@@ -2,11 +2,11 @@
 class Particle {
   constructor(){
     this.x = canvas.width * fxrand();
-    this.y = 0;
+    this.y = canvas.height;
     this.xTarget = 0;
     this.yTarget = 0;
     this.xMidCanvas = canvas.width / 2;
-    this.yMidCanvas = canvas.height;
+    this.yMidCanvas = canvas.height * 7/8;
     this.v = 0.25 * fxrand();
     this.l = 3 * fxrand();
     this.r = 200;
