@@ -1,5 +1,4 @@
-const mouse = {x: canvas.width / 2, y: canvas.height}
-const mouseVelocity = fxrand();
+
 
 
 function loop(){

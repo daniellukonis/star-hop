@@ -1,14 +1,14 @@
 
 class Particle {
   constructor(){
-    this.x = canvas.width / 2;
-    this.y = canvas.height;
+    this.x = canvas.width * fxrand();
+    this.y = 0;
     this.xTarget = 0;
     this.yTarget = 0;
     this.xMidCanvas = canvas.width / 2;
-    this.yMidCanvas = canvas.height / 2;
+    this.yMidCanvas = canvas.height;
     this.v = 0.25 * fxrand();
-    this.l = 2 * fxrand();
+    this.l = 3 * fxrand();
     this.r = 200;
     this.rMax = 200;
     this.fillStyle = '#00000020';
@@ -41,7 +41,7 @@ class Particle {
 
   calcMaxRadius(){
     const rMax = canvas.width > canvas.height ? canvas.height : canvas.width;
-    this.rMax = rMax * fxrand();
+    this.rMax = rMax / 2 * fxrand();
     this.r = ((this.rMax - 10) * fxrand()) + 10;
   }
 
@@ -79,11 +79,11 @@ class Particle {
     if(this.v = xThresh && yThresh){
       this.v = 1 * fxrand() + 1;
       //variColor piggyback
-      this.fillStyle = '#0033FF50';
+      this.fillStyle = '#0033FF';
 
     }else{
       this.v = 0.5 * fxrand();
-      this.fillStyle = '#9900FF80';
+      this.fillStyle = '#9900FF';
     }
   }
 
@@ -101,18 +101,7 @@ class Particle {
     context.restore();
   }
 
-  drawTarget(){
-    context.save();
-    context.lineWidth = 10;
-    context.fillStyle = '#99008810';
-    context.beginPath();
-    // context.moveTo(this.xMidCanvas, this.yMidCanvas);
-    // context.lineTo(this.xTarget, this.yTarget);
-    // context.lineTo(this.x, this.y);
-    // context.arc(this.xTarget,this.yTarget, 3 * fxrand(), 0, Math.PI * 2);
-    context.fill();
-    context.restore();
-  }
+
 
   rotateTarget(){
     this.angle += this.angleVelocity;
@@ -135,7 +124,6 @@ class Particle {
     this.variSpeed();
     this.rotateTarget();
     this.calcTarget();
-    // this.drawTarget();
     this.approachTarget();
     this.drawParticle();
   }
@@ -155,7 +143,6 @@ const particleArray = createParticleArray(1000);
 
 function animateParticleArray(particleArray){
   particleArray.forEach(e => {
-    e.setMidCanvas(mouse.x ,mouse.y);
     e.animate();
   });
 }
